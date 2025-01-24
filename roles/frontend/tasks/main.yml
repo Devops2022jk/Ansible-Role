@@ -1,0 +1,13 @@
+- name: Build and tag the React Docker image
+  command: docker build -t my-react-app:latest .
+  args:
+    chdir: roles/frontend/docker
+
+- name: Run the React container
+  docker_container:
+    name: frontend-app
+    image: my-react-app:latest
+    state: started
+    ports:
+      - "80:80"
+

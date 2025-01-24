@@ -1,0 +1,13 @@
+- name: Build and tag the Spring Boot Docker image
+  command: docker build -t my-backend-app:latest .
+  args:
+    chdir: roles/backend/docker
+
+- name: Run the Spring Boot container
+  docker_container:
+    name: backend-app
+    image: my-backend-app:latest
+    state: started
+    ports:
+      - "8080:8080"
+
